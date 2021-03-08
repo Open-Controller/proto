@@ -148,9 +148,9 @@ enum Icon {
   REVERSE = 13;
   INFO = 14;
   HOME = 15;
-  CHANEL_UP = 16;
-  CHANEL_DOWN = 17;
-  CHANEL = 18;
+  CHANNEL_UP = 16;
+  CHANNEL_DOWN = 17;
+  CHANNEL = 18;
   REMOVE = 19;
   STOP = 20;
   SKIP_FORWARD = 21;
