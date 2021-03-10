@@ -7,25 +7,28 @@ option go_package = "pjtsearch.com/opencontroller_lib_proto";
 package model;
 
 message House {
-  string name = 1;
-  repeated Room room = 2;
-  repeated Device device = 3;
+  string display_name = 1;
+  string id = 2;
+  repeated Room rooms = 3;
+  repeated Device devices = 4;
 }
 
 message Room {
-  string name = 1;
-  repeated Controller controller = 2;
+  string display_name = 1;
+  string id = 2;
+  repeated Controller controllers = 3;
 }
 
 message Controller {
-  string name = 1;
-  repeated Widget widget = 2;
+  string display_name = 1;
+  string id = 2;
+  repeated Widget widgets = 3;
 }
 
 message Device {
   string id = 1;
-  repeated Action action = 2;
-  repeated DynamicValue dynamic_value = 3;
+  repeated Action actions = 2;
+  repeated DynamicValue dynamic_values = 3;
 }
 
 message Widget {
@@ -52,11 +55,11 @@ message DynamicText {
 }
 
 message Row {
-  repeated Widget child = 1;
+  repeated Widget children = 1;
 }
 
 message Column {
-  repeated Widget child = 1;
+  repeated Widget children = 1;
 }
 
 message ArrowLayout {
@@ -104,7 +107,7 @@ message TCPAction {
 }
 
 message MacroAction {
-  repeated ActionRef action = 1;
+  repeated ActionRef actions = 1;
 }
 
 message DelayAction {
@@ -120,7 +123,7 @@ message DynamicValueRef {
 message DynamicValue {
   string id = 1;
   string script = 2;
-  repeated DynamicResource dynamic_resource = 3;
+  repeated DynamicResource dynamic_resources = 3;
 }
 
 message DynamicResource {
