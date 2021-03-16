@@ -166,16 +166,6 @@ enum Icon {
   MENU = 28;
   OPTIONS = 29;
   EXIT = 30;
-  NUMBER0 = 31;
-  NUMBER1 = 32;
-  NUMBER2 = 33;
-  NUMBER3 = 34;
-  NUMBER4 = 35;
-  NUMBER5 = 36;
-  NUMBER6 = 37;
-  NUMBER7 = 38;
-  NUMBER8 = 39;
-  NUMBER9 = 40;
-  ASTERISK = 41;
-  POUND = 42;
+  ASTERISK = 31;
+  POUND = 32;
 }
