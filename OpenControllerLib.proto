@@ -28,13 +28,11 @@ message Controller {
 message Device {
   string id = 1;
   repeated Action actions = 2;
-  repeated DynamicValue dynamic_values = 3;
 }
 
 message Widget {
   oneof inner {
     Button button = 1;
-    DynamicText dynamic_text = 2;
     Row row = 3;
     Column column = 4;
     ArrowLayout arrow_layout = 5;
@@ -43,15 +41,11 @@ message Widget {
 }
 
 message Button {
-  ActionRef action = 1;
+  Action action = 1;
   string text = 3;
   oneof optional_icon {
     Icon icon = 2;
   }
-}
-
-message DynamicText {
-  DynamicValueRef value = 1;
 }
 
 message Row {
@@ -72,24 +66,25 @@ message ArrowLayout {
 
 message Space {}
 
-message ActionRef {
-  string device = 1;
-  string action = 2;
-}
-
 message Action {
   string id = 1;
+  repeated string args = 2;
   oneof inner {
-    HttpAction http_action = 2;
-    TCPAction tcp_action = 3;
-    MacroAction macro_action = 4;
-    DelayAction delay_action = 5;
+    HttpAction http_action = 3;
+    TCPAction tcp_action = 4;
+    MacroAction macro_action = 5;
+    DelayAction delay_action = 6;
+    RefAction ref_action = 7;
+    GetArgAction get_arg_action = 8;
   }
 }
 
 message HttpAction {
-  string url = 1;
-  HttpMethod method = 2;
+  oneof url_inner {
+    string url = 1;
+    Action url_script = 2;
+  }
+  HttpMethod method = 3;
 }
 
 enum HttpMethod {
@@ -103,36 +98,28 @@ enum HttpMethod {
 
 message TCPAction {
   string address = 1;
-  string command = 2;
+  oneof command_inner {
+    string command = 2;
+    Action command_script = 3;
+  }
 }
 
 message MacroAction {
-  repeated ActionRef actions = 1;
+  repeated Action actions = 1;
 }
 
 message DelayAction {
   int32 time = 1;
 }
 
-
-message DynamicValueRef {
+message RefAction {
   string device = 1;
-  string dynamic_value = 2;
+  string action = 2;
 }
 
-message DynamicValue {
-  string id = 1;
-  string script = 2;
-  repeated DynamicResource dynamic_resources = 3;
+message GetArgAction {
+  string arg = 1;
 }
-
-message DynamicResource {
-  oneof inner {
-    DateResource date_resource = 1;
-  }
-}
-
-message DateResource {}
 
 enum Icon {
   STAR = 0;
