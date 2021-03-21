@@ -27,7 +27,7 @@ message Controller {
 
 message Device {
   string id = 1;
-  repeated Action actions = 2;
+  repeated Func funcs = 2;
 }
 
 message Widget {
@@ -41,7 +41,7 @@ message Widget {
 }
 
 message Button {
-  Action action = 1;
+  Func func = 1;
   string text = 3;
   oneof optional_icon {
     Icon icon = 2;
@@ -66,23 +66,26 @@ message ArrowLayout {
 
 message Space {}
 
-message Action {
+message Func {
   string id = 1;
   repeated string args = 2;
   oneof inner {
-    HttpAction http_action = 3;
-    TCPAction tcp_action = 4;
-    MacroAction macro_action = 5;
-    DelayAction delay_action = 6;
-    RefAction ref_action = 7;
-    GetArgAction get_arg_action = 8;
+    HttpFunc http_func = 3;
+    TCPFunc tcp_func = 4;
+    MacroFunc macro_func = 5;
+    DelayFunc delay_func = 6;
+    RefFunc ref_func = 7;
+    ConcatenateFunc concatenate_func = 8;
+    PushStackFunc push_stack_func = 9;
+    StringFunc string_func = 10;
+    PipeFunc pipe_func = 11;
   }
 }
 
-message HttpAction {
+message HttpFunc {
   oneof url_inner {
     string url = 1;
-    Action url_script = 2;
+    Func url_script = 2;
   }
   HttpMethod method = 3;
 }
@@ -96,30 +99,40 @@ enum HttpMethod {
     DELETE = 5;
 }
 
-message TCPAction {
+message TCPFunc {
   string address = 1;
   oneof command_inner {
     string command = 2;
-    Action command_script = 3;
+    Func command_script = 3;
   }
 }
 
-message MacroAction {
-  repeated Action actions = 1;
+message MacroFunc {
+  repeated Func funcs = 1;
 }
 
-message DelayAction {
+message PipeFunc {
+  repeated Func funcs = 1;
+}
+
+message DelayFunc {
   int32 time = 1;
 }
 
-message RefAction {
+message RefFunc {
   string device = 1;
-  string action = 2;
+  string func = 2;
 }
 
-message GetArgAction {
-  string arg = 1;
+message StringFunc {
+  string string = 1;
 }
+
+message PushStackFunc {
+  Func func = 1;
+}
+
+message ConcatenateFunc {}
 
 enum Icon {
   STAR = 0;
