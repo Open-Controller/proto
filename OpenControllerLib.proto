@@ -37,6 +37,7 @@ message Widget {
     Column column = 4;
     ArrowLayout arrow_layout = 5;
     Space space = 6;
+    TextInput text_input = 7;
   }
 }
 
@@ -62,6 +63,14 @@ message ArrowLayout {
   Widget left = 3;
   Widget right = 4;
   Widget center = 5;
+}
+
+message TextInput {
+  Func func = 1;
+  string text = 3;
+  oneof optional_icon {
+    Icon icon = 2;
+  }
 }
 
 message Space {}
