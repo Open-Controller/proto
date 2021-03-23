@@ -88,6 +88,7 @@ message Func {
     PushStackFunc push_stack_func = 9;
     StringFunc string_func = 10;
     PipeFunc pipe_func = 11;
+    PrependStackFunc prepend_stack_func = 12;
   }
 }
 
@@ -138,6 +139,10 @@ message StringFunc {
 }
 
 message PushStackFunc {
+  Func func = 1;
+}
+
+message PrependStackFunc {
   Func func = 1;
 }
 
