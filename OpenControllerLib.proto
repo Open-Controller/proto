@@ -146,7 +146,9 @@ message PrependStackFunc {
   Func func = 1;
 }
 
-message ConcatenateFunc {}
+message ConcatenateFunc {
+  repeated Func strings = 1;
+}
 
 enum Icon {
   STAR = 0;
