@@ -79,16 +79,16 @@ message Func {
   string id = 1;
   repeated string args = 2;
   oneof inner {
-    HttpFunc http_func = 3;
-    TCPFunc tcp_func = 4;
-    MacroFunc macro_func = 5;
-    DelayFunc delay_func = 6;
-    RefFunc ref_func = 7;
-    ConcatenateFunc concatenate_func = 8;
-    PushStackFunc push_stack_func = 9;
-    StringFunc string_func = 10;
-    PipeFunc pipe_func = 11;
-    PrependStackFunc prepend_stack_func = 12;
+    HttpFunc http = 3;
+    TCPFunc tcp = 4;
+    MacroFunc macro = 5;
+    DelayFunc delay = 6;
+    RefFunc ref = 7;
+    ConcatenateFunc concatenate = 8;
+    PushStackFunc push_stack = 9;
+    StringFunc string = 10;
+    PipeFunc pipe = 11;
+    PrependStackFunc prepend_stack = 12;
   }
 }
 
