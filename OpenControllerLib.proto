@@ -93,10 +93,7 @@ message Func {
 }
 
 message HttpFunc {
-  oneof url_inner {
-    string url = 1;
-    Func url_script = 2;
-  }
+  string url = 1;
   HttpMethod method = 3;
 }
 
@@ -111,10 +108,7 @@ enum HttpMethod {
 
 message TCPFunc {
   string address = 1;
-  oneof command_inner {
-    string command = 2;
-    Func command_script = 3;
-  }
+  string command = 2;
 }
 
 message MacroFunc {
