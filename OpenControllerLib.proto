@@ -27,7 +27,7 @@ message Controller {
 
 message Device {
   required string id = 1;
-  repeated Func funcs = 2;
+  repeated Lambda lambdas = 2;
 }
 
 message Widget {
@@ -42,7 +42,7 @@ message Widget {
 }
 
 message Button {
-  required Func func = 1;
+  required Lambda on_click = 1;
   required string text = 3;
   // TODO: Make optional
   oneof optional_icon {
@@ -67,7 +67,7 @@ message ArrowLayout {
 }
 
 message TextInput {
-  required Func func = 1;
+  required Lambda lambda = 1;
   required string text = 3;
   // TODO: make optional
   oneof optional_icon {
@@ -77,7 +77,7 @@ message TextInput {
 
 message Space {}
 
-message Func {
+message Lambda {
   optional string id = 1;
   repeated string args = 2;
   oneof inner {
@@ -89,7 +89,7 @@ message Func {
     ConcatenateFunc concatenate = 8;
     PushStackFunc push_stack = 9;
     StringFunc string = 10;
-    PipeFunc pipe = 11;
+    FoldArgsFunc fold_args = 11;
     PrependStackFunc prepend_stack = 12;
   }
 }
@@ -115,11 +115,11 @@ message TCPFunc {
 }
 
 message MacroFunc {
-  repeated Func funcs = 1;
+  repeated Lambda lambdas = 1;
 }
 
-message PipeFunc {
-  repeated Func funcs = 1;
+message FoldArgsFunc {
+  repeated Lambda lambdas = 1;
 }
 
 message DelayFunc {
@@ -128,22 +128,22 @@ message DelayFunc {
 
 message RefFunc {
   optional string device = 1;
-  optional string func = 2;
+  optional string lambda = 2;
 }
 
-// TODO: replace with oneof in Func
+// TODO: replace with oneof in Lambda
 message StringFunc {
   required string string = 1;
 }
 
 // TODO: Make optional?
 message PushStackFunc {
-  required Func func = 1;
+  required Lambda lambda = 1;
 }
 
 // TODO: Make optional?
 message PrependStackFunc {
-  required Func func = 1;
+  required Lambda lambda = 1;
 }
 
 // TODO: Make optional?
