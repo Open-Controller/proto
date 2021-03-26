@@ -67,7 +67,7 @@ message ArrowLayout {
 }
 
 message TextInput {
-  required Lambda lambda = 1;
+  required Lambda on_input = 1;
   required string text = 3;
   // TODO: make optional
   oneof optional_icon {
