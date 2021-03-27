@@ -44,10 +44,7 @@ message Widget {
 message Button {
   required Lambda on_click = 1;
   required string text = 3;
-  // TODO: Make optional
-  oneof optional_icon {
-    Icon icon = 2;
-  }
+  optional Icon icon = 2;
 }
 
 message Row {
@@ -69,10 +66,7 @@ message ArrowLayout {
 message TextInput {
   required Lambda on_input = 1;
   required string text = 3;
-  // TODO: make optional
-  oneof optional_icon {
-    Icon icon = 2;
-  }
+  optional Icon icon = 2;
 }
 
 message Space {}
