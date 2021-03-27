@@ -82,7 +82,7 @@ message Lambda {
     RefFunc ref = 7;
     ConcatenateFunc concatenate = 8;
     PushStackFunc push_stack = 9;
-    StringFunc string = 10;
+    string string = 10;
     FoldArgsFunc fold_args = 11;
     PrependStackFunc prepend_stack = 12;
   }
@@ -122,11 +122,6 @@ message DelayFunc {
 message RefFunc {
   optional string device = 1;
   optional string lambda = 2;
-}
-
-// TODO: replace with oneof in Lambda
-message StringFunc {
-  required string string = 1;
 }
 
 message PushStackFunc {
