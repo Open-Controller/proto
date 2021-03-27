@@ -90,8 +90,7 @@ message Lambda {
 
 message HttpFunc {
   optional string url = 1;
-  // TODO: Make optional?
-  required HttpMethod method = 3;
+  optional HttpMethod method = 3;
 }
 
 enum HttpMethod {
@@ -130,17 +129,14 @@ message StringFunc {
   required string string = 1;
 }
 
-// TODO: Make optional?
 message PushStackFunc {
-  required Lambda lambda = 1;
+  optional Lambda lambda = 1;
 }
 
-// TODO: Make optional?
 message PrependStackFunc {
-  required Lambda lambda = 1;
+  optional Lambda lambda = 1;
 }
 
-// TODO: Make optional?
 message ConcatenateFunc {
   repeated string strings = 1;
 }
