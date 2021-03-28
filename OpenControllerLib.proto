@@ -87,6 +87,7 @@ message Lambda {
     PrependStackFunc prepend_stack = 12;
     SwitchFunc switch = 13;
     IsEqualFunc is_equal = 14;
+    GetPropFunc get_prop = 15;
   }
 }
 
@@ -163,6 +164,10 @@ message IsEqualFunc {
     float to_float = 9;
     bool to_bool = 10;
   }
+}
+
+message GetPropFunc {
+  optional string prop = 1;
 }
 
 enum Icon {
