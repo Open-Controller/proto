@@ -17,6 +17,7 @@ message Room {
   required string display_name = 1;
   required string id = 2;
   repeated Controller controllers = 3;
+  optional Icon icon = 4;
 }
 
 message Controller {
@@ -213,4 +214,18 @@ enum Icon {
   EXIT = 30;
   ASTERISK = 31;
   POUND = 32;
+  CLOSED_CAPTIONS = 33;
+  GARAGE = 34;
+  LAUNDRY = 35;
+  KITCHEN = 36;
+  NOOK = 37;
+  FAMILY_ROOM = 38;
+  LIVING_ROOM = 39;
+  MEDIA_ROOM = 40;
+  DINING_ROOM = 41;
+  ENTRY = 42;
+  MASTER_BEDROOM = 43;
+  EXERCISE_ROOM = 44;
+  PLAY_ROOM = 45;
+  BEDROOM = 46;
 }
