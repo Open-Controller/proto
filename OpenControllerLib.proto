@@ -17,7 +17,7 @@ message Room {
   required string display_name = 1;
   required string id = 2;
   repeated Controller controllers = 3;
-  optional Icon icon = 4;
+  optional Icon icon = 4 [default = ROOM];
 }
 
 message Controller {
@@ -228,4 +228,5 @@ enum Icon {
   EXERCISE_ROOM = 44;
   PLAY_ROOM = 45;
   BEDROOM = 46;
+  ROOM = 47;
 }
