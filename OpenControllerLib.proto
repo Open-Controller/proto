@@ -24,6 +24,7 @@ message Controller {
   required string display_name = 1;
   required string id = 2;
   repeated Widget widgets = 3;
+  optional string brand_color = 4;
 }
 
 message Device {
