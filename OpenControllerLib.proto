@@ -69,6 +69,15 @@ message TextInput {
   optional Icon icon = 2;
 }
 
+message TextInputAction {
+  oneof inner {
+    string char = 1;
+    bool backspace = 2;
+    bool cursor_left = 3;
+    bool cursor_right = 4;
+  }
+}
+
 message Space {}
 
 message Lambda {
