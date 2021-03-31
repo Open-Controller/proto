@@ -40,6 +40,7 @@ message Widget {
     ArrowLayout arrow_layout = 5;
     Space space = 6;
     TextInput text_input = 7;
+    SwipePad swipe_pad = 8;
   }
 }
 
@@ -63,6 +64,14 @@ message ArrowLayout {
   required Widget left = 3;
   required Widget right = 4;
   required Widget center = 5;
+}
+
+message SwipePad {
+  required Lambda on_swipe_up = 1;
+  required Lambda on_swipe_down = 2;
+  required Lambda on_swipe_left = 3;
+  required Lambda on_swipe_right = 4;
+  required Lambda on_click = 5;
 }
 
 message TextInput {
