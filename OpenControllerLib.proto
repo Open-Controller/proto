@@ -98,7 +98,8 @@ message TextInputAction {
 
 message MenuButton {
   repeated Widget content = 1;
-  optional Icon icon = 2;
+  required string text = 2;
+  optional Icon icon = 3;
 }
 
 message Space {}
