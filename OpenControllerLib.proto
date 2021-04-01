@@ -72,6 +72,11 @@ message SwipePad {
   required Lambda on_swipe_left = 3;
   required Lambda on_swipe_right = 4;
   required Lambda on_click = 5;
+  optional Lambda on_bottom_increase = 6;
+  optional Lambda on_bottom_decrease = 7;
+  optional Lambda on_bottom_click = 8;
+  optional Icon bottom_increase_icon = 9;
+  optional Icon bottom_decrease_icon = 10;
 }
 
 message TextInput {
