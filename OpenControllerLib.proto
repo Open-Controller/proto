@@ -34,15 +34,15 @@ message Device {
 
 message Widget {
   optional bool expand = 1;
-  optional bool required = 2;
   oneof inner {
-    Button button = 3;
-    Row row = 4;
-    Column column = 5;
-    ArrowLayout arrow_layout = 6;
-    Space space = 7;
-    TextInput text_input = 8;
-    SwipePad swipe_pad = 9;
+    Button button = 2;
+    Row row = 3;
+    Column column = 4;
+    ArrowLayout arrow_layout = 5;
+    Space space = 6;
+    TextInput text_input = 7;
+    SwipePad swipe_pad = 8;
+    MenuButton menu_button = 9;
   }
 }
 
@@ -94,6 +94,11 @@ message TextInputAction {
     bool cursor_left = 3;
     bool cursor_right = 4;
   }
+}
+
+message MenuButton {
+  repeated Widget content = 1;
+  optional Icon icon = 2;
 }
 
 message Space {}
