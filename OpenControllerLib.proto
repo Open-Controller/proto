@@ -50,7 +50,7 @@ message Button {
   required Lambda on_click = 1;
   optional Icon icon = 2;
   required string text = 3;
-  optional Size size = 4 [default = MEDIUM];
+  optional Size size = 4 [default = SMALL];
 }
 
 message Row {
@@ -101,7 +101,7 @@ message MenuButton {
   repeated Widget content = 1;
   required string text = 2;
   optional Icon icon = 3;
-  optional Size size = 4 [default = MEDIUM];
+  optional Size size = 4 [default = SMALL];
 }
 
 message Space {}
