@@ -48,8 +48,9 @@ message Widget {
 
 message Button {
   required Lambda on_click = 1;
-  required string text = 3;
   optional Icon icon = 2;
+  required string text = 3;
+  optional Size size = 4 [default = MEDIUM];
 }
 
 message Row {
@@ -100,9 +101,16 @@ message MenuButton {
   repeated Widget content = 1;
   required string text = 2;
   optional Icon icon = 3;
+  optional Size size = 4 [default = MEDIUM];
 }
 
 message Space {}
+
+enum Size {
+  SMALL = 0;
+  MEDIUM = 1;
+  LARGE = 2;
+}
 
 message Lambda {
   optional string id = 1;
