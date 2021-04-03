@@ -124,7 +124,7 @@ message Lambda {
     ConcatenateFunc concatenate = 8;
     PushStackFunc push_stack = 9;
     string string = 10;
-    FoldArgsFunc fold_args = 11;
+    PipeArgsFunc pipe_args = 11;
     PrependStackFunc prepend_stack = 12;
     SwitchFunc switch = 13;
     IsEqualFunc is_equal = 14;
@@ -155,7 +155,7 @@ message MacroFunc {
   repeated Lambda lambdas = 1;
 }
 
-message FoldArgsFunc {
+message PipeArgsFunc {
   repeated Lambda lambdas = 1;
 }
 
