@@ -260,4 +260,7 @@ enum Icon {
   PLAY_ROOM = 45;
   BEDROOM = 46;
   ROOM = 47;
+  MENU_ALT = 48;
+  PLUS = 49;
+  MINUS = 50;
 }
