@@ -6,38 +6,49 @@ option go_package = "pjtsearch.com/opencontroller_lib_proto";
 
 package model;
 
+/** The root message representing a house. **/
 message House {
-  required string display_name = 1;
-  required string id = 2;
-  repeated Room rooms = 3;
-  repeated Device devices = 4;
+  required string display_name = 1; // The name to be displayed by clients
+  required string id = 2; // A unique identifier
+  repeated Room rooms = 3; // The Rooms inside the House
+  repeated Device devices = 4;  // The Devices inside the House
 }
 
+/** A message representing a room. */
 message Room {
-  required string display_name = 1;
-  required string id = 2;
-  repeated Controller controllers = 3;
-  optional Icon icon = 4 [default = ROOM];
+  required string display_name = 1; // The name to be displayed by clients
+  required string id = 2; // A unique identifier
+  repeated Controller controllers = 3; // The Controllers inside the Room
+  optional Icon icon = 4 [default = ROOM]; // The icon of the Room to be displayed by clients
 }
 
+/** A message representing a controller */
 message Controller {
-  required string display_name = 1;
-  required string id = 2;
-  optional string brand_color = 3;
-  optional DisplayInterface display_interface = 4;
+  required string display_name = 1; // The name to be displayed by clients
+  required string id = 2; // A unique identifier
+  optional string brand_color = 3; // A brand color to be displayed by clients
+  optional DisplayInterface display_interface = 4; // The interface for display clients for the Controller
 }
 
+/** A Controller interface for clients with displays */
 message DisplayInterface {
+  /**
+   * The Widgets that make up the controller.
+   * 
+ * Implementation Notes: The layout of the widgets in the array is flexible for the client.
+   */
   repeated Widget widgets = 1;
 }
 
+/** A message representing a controllable device */
 message Device {
-  required string id = 1;
-  repeated Lambda lambdas = 2;
+  required string id = 1; // A unique identifier
+  repeated Lambda lambdas = 2; // The actions the Device is capable of
 }
 
+/** A message representing any controller widget that can be displayed by clients */
 message Widget {
-  optional bool expand = 1;
+  optional bool expand = 1; // Whether to expand the widget to its maximum possible size on the client
   oneof inner {
     Button button = 2;
     Row row = 3;
@@ -50,76 +61,98 @@ message Widget {
   }
 }
 
+/** A button widget */
 message Button {
-  required Lambda on_click = 1;
-  optional Icon icon = 2;
-  required string text = 3;
-  optional Size size = 4 [default = SMALL];
+  required Lambda on_click = 1; // Lambda to be run when the button is clicked
+  optional Icon icon = 2; // Icon to be displayed by clients
+  required string text = 3; // Text label displayed by clients
+  optional Size size = 4 [default = SMALL]; // Size displayed by clients
 }
 
+/** A row layout widget */
 message Row {
-  repeated Widget children = 1;
+  repeated Widget children = 1; // Widgets contained in the Row
 }
 
+/** A column layout widget */
 message Column {
-  repeated Widget children = 1;
+  repeated Widget children = 1; // Widgets contained in the Column
 }
 
+/**
+ * An arrow layout widget
+ */
 message ArrowLayout {
-  required Widget top = 1;
-  required Widget bottom = 2;
-  required Widget left = 3;
-  required Widget right = 4;
-  required Widget center = 5;
+  required Widget top = 1; // The widget on the top
+  required Widget bottom = 2; // The widget on the bottom
+  required Widget left = 3; // The widget on the left
+  required Widget right = 4; // The widget on the right
+  required Widget center = 5; // The widget in the center
 }
 
+/** A directional swipable widget for navigation */
 message SwipePad {
-  required Lambda on_swipe_up = 1;
-  required Lambda on_swipe_down = 2;
-  required Lambda on_swipe_left = 3;
-  required Lambda on_swipe_right = 4;
-  required Lambda on_click = 5;
-  optional Lambda on_bottom_increase = 6;
-  optional Lambda on_bottom_decrease = 7;
-  optional Lambda on_bottom_click = 8;
-  optional Icon bottom_increase_icon = 9;
-  optional Icon bottom_decrease_icon = 10;
+  required Lambda on_swipe_up = 1; // Lambda run on a swipe-up gesture
+  required Lambda on_swipe_down = 2; // Lambda run on a swipe-down gesture
+  required Lambda on_swipe_left = 3; // Lambda run on a swipe-left gesture
+  required Lambda on_swipe_right = 4; // Lambda run on a swipe-right gesture
+  required Lambda on_click = 5; // Lambda run on a click
+  optional Lambda on_bottom_increase = 6; // Lambda run when the bottom increase action is triggered
+  optional Lambda on_bottom_decrease = 7; // Lambda run when the bottom dencrease action is triggered
+  optional Lambda on_bottom_click = 8; // Lambda run when the bottom click action is triggered
+  optional Icon bottom_increase_icon = 9; // Icon for the bottom increase action button
+  optional Icon bottom_decrease_icon = 10; // Icon for the bottom dencrease action button
 }
 
+/** A widget for inputting text */
 message TextInput {
+  /**
+   * Lambda taking a TextInputAction run when the textinput value changes
+   * 
+ * Implementation Notes: A TextInputAction is passed to the Lambda as an argument
+   */
   required Lambda on_input = 1;
-  required string text = 3;
-  optional Icon icon = 2;
-  optional Size size = 4 [default = SMALL];
+  required string text = 3; // The text to be displayed by clients
+  optional Icon icon = 2; // The icon to be displayed by clients
+  optional Size size = 4 [default = SMALL]; // The size to be displayed by clients
 }
 
+/** An action from a TextInput widget */
 message TextInputAction {
   oneof inner {
-    string char = 1;
-    bool backspace = 2;
-    bool cursor_left = 3;
-    bool cursor_right = 4;
+    string char = 1; // A character inserted
+    bool backspace = 2; // A character deleted before the cursor
+    bool cursor_left = 3; // The cursor move left
+    bool cursor_right = 4; // The cursor move right
   }
 }
 
+/** A button widget that opens a menu with widgets */
 message MenuButton {
-  repeated Widget content = 1;
-  required string text = 2;
-  optional Icon icon = 3;
-  optional Size size = 4 [default = SMALL];
+  repeated Widget content = 1; // The content of the menu
+  required string text = 2; // The text of the button to be displayed by clients
+  optional Icon icon = 3; // The icon of the button to be displayed by clients
+  optional Size size = 4 [default = SMALL]; // The size of the button to be displayed by clients
 }
 
+/** A widget for empty space */
 message Space {}
 
+/** An enum for the size of a widget */
 enum Size {
   SMALL = 0;
   MEDIUM = 1;
   LARGE = 2;
 }
 
+/**
+ * A lambda function
+ *
+ * The args will be passed to the inner function's optional parameters in order if they are unset
+ */
 message Lambda {
-  optional string id = 1;
-  repeated string args = 2;
+  optional string id = 1; // A unique identifier
+  repeated string args = 2; // The arguments to accept from the arguments stack
   oneof inner {
     HttpFunc http = 3;
     TCPFunc tcp = 4;
@@ -141,11 +174,17 @@ message Lambda {
   }
 }
 
+/**
+ * A function that sends an HTTP request
+ * 
+ * Implementation Notes: Should return the result of the request as a string
+ */
 message HttpFunc {
-  optional string url = 1;
-  optional HttpMethod method = 3;
+  optional string url = 1; // The URL of the request
+  optional HttpMethod method = 3; // The HTTP method of the request
 }
 
+/** An enum representing HTTP methods */
 enum HttpMethod {
     GET = 0;
     HEAD = 1;
@@ -155,50 +194,75 @@ enum HttpMethod {
     DELETE = 5;
 }
 
+/**
+ * A function that sends an TCP request
+ * 
+ * Implementation Notes:
+ * - Should return the result of the request as a string
+ * - Should close after the request is sent
+ */
 message TCPFunc {
-  optional string address = 1;
-  optional string command = 2;
+  optional string address = 1; // The IP address to send the request to
+  optional string command = 2; // The payload to send in the request
 }
 
+/** A function that runs multiple Lambdas synchronously without piping the returns as arguments */
 message MacroFunc {
-  repeated Lambda lambdas = 1;
+  repeated Lambda lambdas = 1; // The Lambdas to run
 }
 
+/**
+ * A function that runs multiple Lambdas synchronously and pipes the returns as arguments
+ *
+ * The arguments to the Lambda containing the PipeArgsFunc will be passed to the first Lambda
+ */
 message PipeArgsFunc {
-  repeated Lambda lambdas = 1;
+  repeated Lambda lambdas = 1; // The Lambdas to run
 }
 
+/** A function that delays execution */
 message DelayFunc {
-  optional int32 time = 1;
+  optional int32 time = 1; // The amount of time in milliseconds to delay
 }
 
+/**
+ * A function that calls a Lambda in a Device
+ *
+ * The arguments to the current lambda will be passed to the referenced lambda
+ */
 message RefFunc {
-  optional string device = 1;
-  optional string lambda = 2;
+  optional string device = 1; // The device to reference from
+  optional string lambda = 2; // The Lambda to reference
 }
 
+/** Pushes the return of a lambda to the return of the enclosing lambda */
 message PushStackFunc {
-  optional Lambda lambda = 1;
+  optional Lambda lambda = 1; // The lambda whose return to push
 }
 
+/** Prepends the return of a lambda to the return of the enclosing lambda */
 message PrependStackFunc {
-  optional Lambda lambda = 1;
+  optional Lambda lambda = 1; // The lambda whose return to prepend
 }
 
+/** A function that concatenates multiple strings */
 message ConcatenateFunc {
-  repeated string strings = 1;
+  repeated string strings = 1; // The strings to concatenate
 }
 
+/** A message that represents an if statement */
 message Conditional {
-  required Lambda if = 1;
-  required Lambda then = 2;
+  required Lambda if = 1; // The condition to run then
+  required Lambda then = 2; // The lambda to run if the condition returns true
 }
 
+/** A function that runs the first conditional that is true, or otherwise the else lambda */
 message SwitchFunc {
-  repeated Conditional conditions = 1;
-  optional Lambda else = 2;
+  repeated Conditional conditions = 1; // The conditions to try
+  optional Lambda else = 2; // The default to be run if the conditions are all false
 }
 
+/** A function that compares the equality of two values of the same type */
 message IsEqualFunc {
   oneof from {
     string from_string = 1;
@@ -216,14 +280,25 @@ message IsEqualFunc {
   }
 }
 
+/**
+ * Indexes a property from another message or map
+ * 
+ * Implementation Notes: Takes an argument for the message/map
+ */
 message GetPropFunc {
-  optional string prop = 1;
+  optional string prop = 1; // The property to index
 }
 
+/**
+ * Indexes an array
+ * 
+ * Implementation Notes: Takes an argument for the array
+ */
 message GetIndexFunc {
-  optional int32 index = 1;
+  optional int32 index = 1; // The index to get
 }
 
+/** An enum representing icons that can be displayed by the client */
 enum Icon {
   STAR = 0;
   ARROW_UP = 1;
