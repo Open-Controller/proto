@@ -1,3 +1,8 @@
+/**
+ * OpenController Proto
+ *
+ * A Protocol Buffer schema representing an OpenController house.
+*/
 syntax = "proto2";
 
 option java_package = "com.pjtsearch.opencontroller_lib_proto";
