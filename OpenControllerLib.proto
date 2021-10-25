@@ -15,14 +15,14 @@ package model;
 message HouseExpr {
     required Expr display_name = 1; // The name to be displayed by clients
     required Expr id = 2; // A unique identifier
-    map<string, RoomExpr> rooms = 3; // The Rooms inside the House
-    map<string, DeviceExpr> devices = 4;  // The Devices inside the House
+    map<string, Expr> rooms = 3; // The Rooms inside the House
+    map<string, Expr> devices = 4;  // The Devices inside the House
 }
 
 /** A message representing a room. */
 message RoomExpr {
     required Expr display_name = 1; // The name to be displayed by clients
-    map<string, ControllerExpr> controllers = 2; // The Controllers inside the Room
+    map<string, Expr> controllers = 2; // The Controllers inside the Room
     optional Expr icon = 3; // The icon of the Room to be displayed by clients
 }
 
@@ -30,7 +30,7 @@ message RoomExpr {
 message ControllerExpr {
     required Expr display_name = 1; // The name to be displayed by clients
     optional Expr brand_color = 2; // A brand color to be displayed by clients
-    optional DisplayInterfaceExpr display_interface = 3; // The interface for display clients for the Controller
+    optional Expr display_interface = 3; // The interface for display clients for the Controller
 }
 
 /** A Controller interface for clients with displays */
@@ -40,12 +40,12 @@ message DisplayInterfaceExpr {
         * 
     * Implementation Notes: The layout of the widgets in the array is flexible for the client.
         */
-    repeated WidgetExpr widgets = 1;
+    repeated Expr widgets = 1;
 }
 
 /** A message representing a controllable device */
 message DeviceExpr {
-    map<string, LambdaExpr> lambdas = 1; // The actions the Device is capable of
+    map<string, Expr> lambdas = 1; // The actions the Device is capable of
 }
 
 /** A message representing any controller widget that can be displayed by clients */
@@ -53,7 +53,7 @@ message WidgetExpr {
     optional bool expand = 1; // Whether to expand the widget to its maximum possible size on the client
     required string widget_type = 2;
     map<string, Expr> params = 3;
-    repeated WidgetExpr children = 4;
+    repeated Expr children = 4;
 }
 
 message RefExpr {
