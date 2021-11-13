@@ -88,3 +88,8 @@ message Expr {
         WidgetExpr widget = 14;
     }
 }
+
+message Module {
+    map<string, Module> imports = 1;
+    required Expr body = 2;
+}
