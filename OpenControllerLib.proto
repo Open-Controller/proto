@@ -16,7 +16,6 @@ message HouseExpr {
     required Expr display_name = 1; // The name to be displayed by clients
     required Expr id = 2; // A unique identifier
     map<string, Expr> rooms = 3; // The Rooms inside the House
-    map<string, Expr> devices = 4;  // The Devices inside the House
 }
 
 /** A message representing a room. */
