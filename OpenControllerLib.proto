@@ -68,6 +68,18 @@ message CallExpr {
     repeated Expr args = 2;
 }
 
+message Elif {
+    required Expr condition = 1;
+    required Expr then = 2;
+}
+
+message IfExpr {
+    required Expr condition = 1;
+    required Expr then = 2;
+    repeated Elif elif = 3;
+    required Expr else = 4;
+}
+
 message Expr {
     oneof inner {
         RefExpr ref = 1;
@@ -84,6 +96,7 @@ message Expr {
         DisplayInterfaceExpr display_interface = 12;
         DeviceExpr device = 13;
         WidgetExpr widget = 14;
+        IfExpr if = 15;
     }
 }
 
