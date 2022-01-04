@@ -87,8 +87,9 @@ message IfExpr {
 
 /** A message representing the position of an expression in source code */
 message Position {
-    required int32 line = 1; // The line number
-    required int32 column = 2; // The column number
+    required string file = 1; // The file path
+    required int32 line = 2; // The line number
+    required int32 column = 3; // The column number
 }
 
 /** A message representing an expression */
