@@ -21,7 +21,7 @@ message HouseExpr {
 /** A message representing a room. */
 message RoomExpr {
     required Expr display_name = 1; // The name to be displayed by clients
-    map<string, Expr> controllers = 2; // The Controllers inside the Room
+    repeated Expr controllers = 2; // The Controllers inside the Room
     optional Expr icon = 3; // The icon of the Room to be displayed by clients
 }
 
